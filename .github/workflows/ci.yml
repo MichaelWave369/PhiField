@@ -28,6 +28,10 @@ jobs:
         run: npm run build
         env:
           PHI_FIELD_BASE: /PhiField/
+      - name: Verify emitted React bundle paths and fallback
+        run: npm run check:dist
+        env:
+          PHI_FIELD_BASE: /PhiField/
       - name: Verify preview bundle
         run: |
           test -s dist/index.html
