@@ -1,0 +1,39 @@
+name: PhiField CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Validate, test and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify source safety and links
+        run: npm test
+      - name: Build GitHub Pages preview
+        run: npm run build
+        env:
+          PHI_FIELD_BASE: /PhiField/
+      - name: Verify preview bundle
+        run: |
+          test -s dist/index.html
+          test -s dist/favicon.svg
+          test -n "$(find dist/assets -maxdepth 1 -name '*.js' -print -quit)"
+          grep -q '/PhiField/assets/' dist/index.html
+          ! grep -qE 'googleapis|gstatic|analytics' dist/index.html
