@@ -26,6 +26,16 @@ npm run build
 
 The browser-generated field runs locally. It is decorative and independent of Xi infrastructure.
 
+## Blank-page prevention
+
+A successful Vite build does **not** guarantee that React can execute in a browser. The initial deployment had JSX modules without a default `React` binding, which can produce a `React is not defined` runtime failure with the classic JSX transform. This fix binds the runtime explicitly in the two JSX components.
+
+`npm test` now performs a **real server-side React render** of the transformed page, verifying that the heading, portals, canvas, and public Commons content appear. `npm run check:dist` separately verifies the compiled GitHub Pages `/PhiField/` HTML points to real local JS and CSS assets. Pages deployment requires both guards to pass.
+
+The HTML also has a readable built-in loading/recovery panel that React replaces when it boots. If JavaScript fails again, you see instructions instead of a blank screen.
+
+After a fix is deployed, open the [GitHub Pages preview](https://michaelwave369.github.io/PhiField/) with **Ctrl+Shift+R** to bypass a stale browser cache. `phi-field.com` itself still requires separate Netlify/Namecheap DNS setup.
+
 ## Deployment
 
 **Preview:** Merge the PR and select **GitHub Actions** under GitHub repository **Settings → Pages**. The `Deploy PhiField to GitHub Pages` workflow publishes at:
