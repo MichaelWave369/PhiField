@@ -10,9 +10,27 @@
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
     <title>Φ-FIELD | Sovereign Creative Universe</title>
+    <style>
+      .boot-fallback{min-height:85vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+        padding:35px;text-align:center;background:#070f18;color:#eef9f5;font:16px/1.7 system-ui,sans-serif}
+      .boot-fallback h1{font-size:clamp(32px,7vw,58px);letter-spacing:.12em;margin:0}
+      .boot-fallback p{margin:0;color:#add9d3}
+      .boot-fallback .boot-emblem{font:110px/1 Georgia,serif;color:#8df5d9}
+      .boot-fallback .boot-recovery{max-width:540px;font-size:13px;color:#a7b9c1}
+      .boot-fallback a{color:#8df5d9;text-decoration:underline}
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <main class="boot-fallback" role="status" aria-live="polite">
+        <span class="boot-emblem" aria-hidden="true">Φ</span>
+        <h1>Φ-FIELD</h1>
+        <p>Loading the field…</p>
+        <p class="boot-recovery">The application did not start if this message remains.
+          <a href="https://github.com/MichaelWave369/PhiField/actions">Check deployment status</a>
+          or reload the page.</p>
+      </main>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

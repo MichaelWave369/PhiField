@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
     "test": "node --test tests/*.test.mjs",
-    "check": "npm run test && npm run build"
+    "check": "npm run test && npm run build && npm run check:dist",
+    "check:dist": "node scripts/check-dist.mjs"
   },
   "dependencies": {
     "react": "^19.0.0",
