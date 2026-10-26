@@ -41,7 +41,7 @@ These are **ideas**, not currently configured DNS hosts, live apps or approved c
 ## Local development
 
 ```bash
-npm ci
+npm install
 npm run dev
 npm test
 npm run build
